@@ -1,6 +1,6 @@
 import { pinJSONToIPFS } from "./pinata.js";
 require("dotenv").config();
-const alchemyKey = process.env.REACT_APP_ALCHEMY_KEY;
+const alchemyKey = process.env.REACT_APP_ALCHEMY_URL;
 const contract = require("../hardhat/artifacts/contracts/PortContent.sol/PortContent.json");
 const contractABI = contract.abi;
 const contractAddress = "0x583fec0F4edF37950A3545A0D40b0A1D654A8742";

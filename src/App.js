@@ -1,10 +1,11 @@
 import './App.css';
 import Minter from './Minter'
+import Feed from './Feed'
 
 function App() {
   return (
     <div className="App">
-      <Minter></Minter>
+      <Feed></Feed>
       
     </div>
   );
