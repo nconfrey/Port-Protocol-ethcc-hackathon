@@ -1,94 +1,60 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
 
 body {
-  margin: 0;
-  font-family: 'Rubik';
-  color: #254cdd;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-.Minter {
-  max-width: 80vh;
-  max-height: 80vh;
-  padding: 60px 100px;
-  margin: 0 auto;
-  text-align: left;
-
-}
-
-input {
-  border-top-style: hidden;
-  border-right-style: hidden;
-  border-left-style: hidden;
-  border-bottom-style: groove;
-  font-size: 16px;
-  width: 100%;
-  border-color: rgba(4, 4, 5, 0.1);
-  line-height: 32px;
-}
-
-input:focus {
-  outline: none;
-  border-color: rgba(4, 4, 5, 0.4);
-}
-
-
-button {
-  padding: 9px 16px;
-  max-height: 40px;
-  /*box-shadow: 4px 4px 15px 0 rgb(0 0 0 / 20%);*/
-  border-color: #254cdd;
-  color: #254cdd;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
   background-color: white;
-  border-radius: 8px;
-  align-items: center;
-  font-size: 16px;
-  font-weight: 500;
-  text-align: center;
-  font-weight: bold;
-  cursor:pointer;
 }
 
-button:hover {
-  margin-top: -1px;
+ul[class],
+ol[class] {
+  list-style: none;
 }
 
-#title {
-  padding-top: 32px;
+a:not([class]) {
+  text-decoration-skip-ink: auto;
 }
 
-.uploadFile {
-  border: 4px dashed rgba(4, 4, 5, 0.1);
-  border-radius: 16px;
-  text-align: center;
-  padding: 32px 60px;
+img {
+  max-width: 100%;
+  display: block;
 }
 
-#walletButton {
-  text-align: right;
-  float:right;
-  margin-bottom: 50px;
-  line-height: 16px;
-}
-/*
-#walletButton:focus {
-  outline:none;
-  border: none;
+article > * + * {
+  margin-top: 1em;
 }
 
-#walletButton:hover {
-  outline:none;
-  border :none;
-} */
-
-#mintButton {
-  margin-top: 40px;
-  background-color: #254cdd;
-  color:white;
+input,
+button,
+textarea,
+select {
+  font: inherit;
 }
