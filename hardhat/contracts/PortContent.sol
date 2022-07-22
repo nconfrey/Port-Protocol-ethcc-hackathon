@@ -5,7 +5,6 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-
 contract PortContent is ERC721URIStorage {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
@@ -13,6 +12,7 @@ contract PortContent is ERC721URIStorage {
     constructor() public ERC721("PortContent", "PORT") {}
 
     function mintNFT(address recipient, string memory tokenURI)
+        public
         returns (uint256)
     {
         _tokenIds.increment();

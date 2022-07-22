@@ -9,7 +9,7 @@ module.exports = {
    defaultNetwork: "polygon_mumbai",
    networks: {
       hardhat: {},
-      goerli: {
+      polygon_mumbai: {
          url: API_URL,
          accounts: [`0x${PRIVATE_KEY}`]
       }
