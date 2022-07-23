@@ -33,3 +33,6 @@ Alchemy powers our minter and NFT queries.
 **NFT Queries**
 Leveraged the Alchemy web3 SDK.
 - Using `getNFTsForCollection` to fetch all NFTs in a collection, [tutorial](https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/how-to-get-all-nfts-in-a-collection)
+
+### Use of Moralis
+Moralis is used to provide easy sign-in and wallet APIs.
