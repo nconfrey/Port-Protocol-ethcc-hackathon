@@ -6,6 +6,7 @@ import { FileSearchOutlined, FullscreenOutlined } from "@ant-design/icons";
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
 import { getExplorer } from "helpers/networks";
 import { useWeb3ExecuteFunction } from "react-moralis";
+import Text from "antd/lib/typography/Text";
 const { Meta } = Card;
 
 const styles = {
@@ -171,6 +172,9 @@ function NFTBalance() {
             />
             <div style={{ marginBottom: "10px" }}></div>
           </>
+        )}
+        {NFTBalance && NFTBalance.isEmpty && (
+          <Text> Nothing here yet, connect your wallet and mint to get started!</Text>
         )}
         {NFTBalance &&
           NFTBalance.map((nft, index) => (
