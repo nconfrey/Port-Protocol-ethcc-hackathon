@@ -10,7 +10,7 @@ import {
 import Account from "components/Account";
 import Chains from "components/Chains";
 import NFTBalance from "components/NFTBalance";
-import NFTTokenIds from "components/NFTTokenIds";
+import Feed from "components/Feed";
 import { Menu, Layout} from "antd";
 import "antd/dist/antd.css";
 import NativeBalance from "components/NativeBalance";
@@ -99,7 +99,7 @@ const App = ({ isServerInfo }) => {
               <NFTBalance />
             </Route>
             <Route path="/feed">
-              <NFTTokenIds inputValue={inputValue} setInputValue={setInputValue}/>
+              <Feed />
             </Route>
             <Route path="/minter">
               <Minter />

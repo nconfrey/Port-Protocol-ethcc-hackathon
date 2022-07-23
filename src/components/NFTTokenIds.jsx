@@ -218,35 +218,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
         )}
 
         <div style={styles.NFTs}>
-          {inputValue === "explore" &&
-            NFTCollections?.map((nft, index) => (
-              <Card
-                hoverable
-                actions={[
-                  <Tooltip title="View Collection">
-                    <RightCircleOutlined
-                      onClick={() => setInputValue(nft?.addrs)}
-                    />
-                  </Tooltip>,
-                ]}
-                style={{ width: 240, border: "2px solid #e7eaf3" }}
-                cover={
-                  <Image
-                    preview={false}
-                    src={nft?.image || "error"}
-                    fallback={fallbackImg}
-                    alt=""
-                    style={{ height: "240px" }}
-                  />
-                }
-                key={index}
-              >
-                <Meta title={nft.name} />
-              </Card>
-            ))}
-
-          {inputValue !== "explore" &&
-            NFTTokenIds.slice(0, 20).map((nft, index) => (
+          {NFTTokenIds.slice(0, 20).map((nft, index) => (
               <Card
                 hoverable
                 actions={[

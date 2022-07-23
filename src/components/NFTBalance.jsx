@@ -236,11 +236,6 @@ function NFTBalance() {
               marginBottom: "15px",
             }}
           />
-          <Input
-            autoFocus
-            placeholder="Listing Price in MATIC"
-            onChange={(e) => setPrice(e.target.value)}
-          />
         </Spin>
       </Modal>
     </>

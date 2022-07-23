@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@alch/alchemy-sdk": "^1.2.0",
     "@alch/alchemy-web3": "^1.4.6",
     "@ant-design/icons": "^4.7.0",
     "@testing-library/jest-dom": "^5.11.4",
