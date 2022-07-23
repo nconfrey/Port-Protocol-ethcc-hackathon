@@ -35,6 +35,21 @@ contract Port is ReentrancyGuard {
     uint256 price
   );
 
+  string licenseImageURL;
+
+  function setLicenseImageURL(string newURL) public {
+    licenseImageURL = newURL;
+  }
+
+  function readLicenseImageURL() public view returns (string) {
+    return licenseImageURL;
+  }
+
+  constructor(string _licenseImageURL) {
+    _marketOwner = payable(msg.sender);
+    licenseImageURL = _licenseImageURL
+  }
+
   // Create license from NFT
   function createLicense(address _nftContract, uint256 _tokenId) public payable nonReentrant {
     NFT storage nft = _idToNFT[_tokenId];
