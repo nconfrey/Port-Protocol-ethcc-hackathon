@@ -89,7 +89,11 @@ const Minter = (props) => {
   }
 
   const onMintPressed = async () => {
-    const { success, status } = await mintNFT(url, name, description);
+    const { success, status } = await mintNFT("CREATOR_NFT",
+      url,
+      name,
+      description,
+      originalCreator);
     setStatus(status);
     if (success) {
       setName("");
@@ -121,8 +125,8 @@ const Minter = (props) => {
           onChange={(event) => setName(event.target.value)}
         />
         <Text style={styles.label}>Describe the item</Text>
-        <TextArea 
-        rows={4}
+        <TextArea
+          rows={4}
           type="text"
           placeholder="I made this cool GIF"
           onChange={(event) => setDescription(event.target.value)}

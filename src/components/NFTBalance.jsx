@@ -9,6 +9,11 @@ import { useWeb3ExecuteFunction } from "react-moralis";
 import Text from "antd/lib/typography/Text";
 import { NavLink } from "react-router-dom";
 import gif from "../assets/mint-now.gif"
+import {
+  connectWallet,
+  getCurrentWalletConnected,
+  mintNFT,
+} from "./util/interact.js";
 const { Meta } = Card;
 
 const styles = {
@@ -36,89 +41,21 @@ function NFTBalance() {
   const listItemFunction = "createMarketItem";
   const ItemImage = Moralis.Object.extend("ItemImages");
 
-  async function list(nft, listPrice) {
-    setLoading(true);
-    const p = listPrice * ("1e" + 18);
-    const ops = {
-      contractAddress: marketAddress,
-      functionName: listItemFunction,
-      abi: contractABIJson,
-      params: {
-        nftContract: nft.token_address,
-        tokenId: nft.token_id,
-        price: String(p),
-      },
-    };
-
-    await contractProcessor.fetch({
-      params: ops,
-      onSuccess: () => {
-        console.log("success");
-        setLoading(false);
-        setVisibility(false);
-        addItemImage();
-        succList();
-      },
-      onError: (error) => {
-        setLoading(false);
-        failList();
-      },
-    });
-  }
-
-
   async function mintLicenseFrom(nft) {
-    
+    const title = "License for " + nft.token_address
+    const description = "Original name: " + nft.name
+    // const { success, status } = await mintNFT(LICENSE_NFT, 
+    //   "https://gateway.pinata.cloud/ipfs/QmXXKNeJrigru7C41hBoobz8igsjmqUe6Ch2jMSUeigFoj", 
+    //   title,
+    //   description,
+    //   false);
+    // setStatus(status);
   }
 
   const handleExpandInfo = (nft) => {
     setExpandInfo(nft);
     setVisibility(true);
   };
-
-  function succList() {
-    let secondsToGo = 5;
-    const modal = Modal.success({
-      title: "Success!",
-      content: `Your NFT was listed on the marketplace`,
-    });
-    setTimeout(() => {
-      modal.destroy();
-    }, secondsToGo * 1000);
-  }
-
-  function succApprove() {
-    let secondsToGo = 5;
-    const modal = Modal.success({
-      title: "Success!",
-      content: `Approval is now set, you may list your NFT`,
-    });
-    setTimeout(() => {
-      modal.destroy();
-    }, secondsToGo * 1000);
-  }
-
-  function failList() {
-    let secondsToGo = 5;
-    const modal = Modal.error({
-      title: "Error!",
-      content: `There was a problem listing your NFT`,
-    });
-    setTimeout(() => {
-      modal.destroy();
-    }, secondsToGo * 1000);
-  }
-
-  function failApprove() {
-    let secondsToGo = 5;
-    const modal = Modal.error({
-      title: "Error!",
-      content: `There was a problem with setting approval`,
-    });
-    setTimeout(() => {
-      modal.destroy();
-    }, secondsToGo * 1000);
-  }
 
   function addItemImage() {
     const itemImage = new ItemImage();
@@ -242,7 +179,7 @@ function NFTBalance() {
         title={`${nftToExpand?.metadata?.name}`}
         visible={visible}
         onCancel={() => setVisibility(false)}
-        onOk={() => list(nftToExpand, price)}
+        onOk={() => mintLicenseFrom(nftToExpand)}
         okText="Use"
         footer={[
           <Button onClick={() => setVisibility(false)}>
@@ -251,7 +188,7 @@ function NFTBalance() {
           <Button onClick={() => mintLicenseFrom(nftToExpand)} type="primary">
             Use
           </Button>,
-          <Button onClick={() => list(nftToExpand, price)} type="primary">
+          <Button onClick={() => mintLicenseFrom(nftToExpand)} type="primary">
             Claim
           </Button>
         ]}
