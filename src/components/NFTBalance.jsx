@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useMoralis } from "react-moralis";
 import { Card, Image, Tooltip, Modal, Input, Alert, Spin, Button } from "antd";
 import { useNFTBalance } from "hooks/useNFTBalance";
-import { FileSearchOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { FileSearchOutlined, FullscreenOutlined } from "@ant-design/icons";
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
 import { getExplorer } from "helpers/networks";
 import { useWeb3ExecuteFunction } from "react-moralis";
@@ -25,7 +25,7 @@ function NFTBalance() {
   const { chainId, marketAddress, contractABI } = useMoralisDapp();
   const { Moralis } = useMoralis();
   const [visible, setVisibility] = useState(false);
-  const [nftToSend, setNftToSend] = useState(null);
+  const [nftToExpand, setExpandInfo] = useState(null);
   const [price, setPrice] = useState(1);
   const [loading, setLoading] = useState(false);
   const contractProcessor = useWeb3ExecuteFunction();
@@ -91,8 +91,8 @@ function NFTBalance() {
     });
   }
 
-  const handleSellClick = (nft) => {
-    setNftToSend(nft);
+  const handleExpandInfo = (nft) => {
+    setExpandInfo(nft);
     setVisibility(true);
   };
 
@@ -143,10 +143,10 @@ function NFTBalance() {
   function addItemImage() {
     const itemImage = new ItemImage();
 
-    itemImage.set("image", nftToSend.image);
-    itemImage.set("nftContract", nftToSend.token_address);
-    itemImage.set("tokenId", nftToSend.token_id);
-    itemImage.set("name", nftToSend.name);
+    itemImage.set("image", nftToExpand.image);
+    itemImage.set("nftContract", nftToExpand.token_address);
+    itemImage.set("tokenId", nftToExpand.token_id);
+    itemImage.set("name", nftToExpand.name);
 
     itemImage.save();
   }
@@ -187,8 +187,8 @@ function NFTBalance() {
                     }
                   />
                 </Tooltip>,
-                <Tooltip title="List NFT for sale">
-                  <ShoppingCartOutlined onClick={() => handleSellClick(nft)} />
+                <Tooltip title="Explore content">
+                  <FullscreenOutlined onClick={() => handleExpandInfo(nft)} />
                 </Tooltip>,
               ]}
               style={{ width: 240, border: "2px solid #e7eaf3" }}
@@ -209,26 +209,26 @@ function NFTBalance() {
       </div>
 
       <Modal
-        title={`List ${nftToSend?.name} #${nftToSend?.token_id} For Sale`}
+        title={`${nftToExpand?.metadata?.name}`}
         visible={visible}
         onCancel={() => setVisibility(false)}
-        onOk={() => list(nftToSend, price)}
-        okText="List"
+        onOk={() => list(nftToExpand, price)}
+        okText="Use"
         footer={[
           <Button onClick={() => setVisibility(false)}>
             Cancel
           </Button>,
-          <Button onClick={() => approveAll(nftToSend)} type="primary">
-            Approve
+          <Button onClick={() => approveAll(nftToExpand)} type="primary">
+            Use
           </Button>,
-          <Button onClick={() => list(nftToSend, price)} type="primary">
-            List
+          <Button onClick={() => list(nftToExpand, price)} type="primary">
+            Claim
           </Button>
         ]}
       >
         <Spin spinning={loading}>
           <img
-            src={`${nftToSend?.image}`}
+            src={`${nftToExpand?.image}`}
             style={{
               width: "250px",
               margin: "auto",
