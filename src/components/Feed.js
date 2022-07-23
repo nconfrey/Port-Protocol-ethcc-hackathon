@@ -27,6 +27,8 @@ const alchemy = initializeAlchemy(settings);
 
 const Feed = (props) => {
   const [feedNFTs, setFeedNFTs] = useState(null);
+  const [visible, setVisibility] = useState(false);
+  const [nftToExpand, setExpandInfo] = useState(null);
   const { initializeAlchemy, getNftsForCollection, Network } = require('@alch/alchemy-sdk');
 
   useEffect(() => {
@@ -41,7 +43,8 @@ const Feed = (props) => {
   }, []);
 
   const handleExpandInfo = (nft) => {
-
+    setExpandInfo(nft);
+    setVisibility(true);
   };
 
   return (
@@ -65,7 +68,10 @@ const Feed = (props) => {
                 <FullscreenOutlined onClick={() => handleExpandInfo(nft)} />
               </Tooltip>,
             ]}
-            style={{ width: 240, border: "2px solid #e7eaf3" }}
+            style={{
+              width: 240,
+              border: "2px solid #e7eaf3",
+            }}
             cover={
               <Image
                 preview={false}

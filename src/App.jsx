@@ -90,7 +90,7 @@ const App = ({ isServerInfo }) => {
               <NavLink to="/portfolio">Your Stuff</NavLink>
             </Menu.Item>
             <Menu.Item key="minter">
-              <NavLink to="/minter">Mint</NavLink>
+              <NavLink to="/mint">Mint</NavLink>
             </Menu.Item>
           </Menu>
           <div style={styles.headerRight}>
@@ -107,7 +107,7 @@ const App = ({ isServerInfo }) => {
             <Route path="/feed">
               <Feed />
             </Route>
-            <Route path="/minter">
+            <Route path="/mint">
               <Minter />
             </Route>
           </Switch>

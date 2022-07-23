@@ -7,6 +7,8 @@ import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvide
 import { getExplorer } from "helpers/networks";
 import { useWeb3ExecuteFunction } from "react-moralis";
 import Text from "antd/lib/typography/Text";
+import { NavLink } from "react-router-dom";
+import gif from "../assets/mint-now.gif"
 const { Meta } = Card;
 
 const styles = {
@@ -157,7 +159,42 @@ function NFTBalance() {
   if (NFTBalance.length === 0) {
     console.log("empty state")
     return (
-      <Text> Nothing here yet, connect your wallet and mint to get started!</Text>
+      <div style={{
+        justifyContent: "center",
+        alignItems: "center",
+        width: "fit-content",
+        display: "flex",
+        flexDirection: "column"
+      }}>
+        <img src={gif} style={{
+          width: "50%%",
+          height: "50%",
+        }} />
+        <Text style={{
+          display: "flex",
+          fontFamily: "Albert+Sans, sans-serif",
+          fontWeight: "400",
+          fontSize: "32px",
+          color: "#041836",
+          padding: "10px",
+        }}> None of your stuff is on chain yet!</Text>
+        <NavLink to="/mint">
+          <Button
+            size="large"
+            type="primary"
+            style={{
+              width: "100%",
+              marginTop: "10px",
+              borderRadius: "0.5rem",
+              fontSize: "16px",
+              fontWeight: "500",
+              alignSelf: "center"
+            }}
+          >
+            Start minting!
+          </Button>
+        </NavLink>
+      </div>
     )
   }
 
