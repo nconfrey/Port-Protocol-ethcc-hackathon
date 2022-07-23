@@ -1,6 +1,6 @@
 async function main() {
   // Grab the contract factory 
-  const MyNFT = await ethers.getContractFactory("PortContent");
+  const MyNFT = await ethers.getContractFactory("PortLicense");
 
   // Start deployment, returning a promise that resolves to a contract object
   const myNFT = await MyNFT.deploy(); // Instance of the contract 
