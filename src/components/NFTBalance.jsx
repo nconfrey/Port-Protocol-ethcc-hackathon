@@ -66,11 +66,11 @@ function NFTBalance() {
 
 
   async function approveAll(nft) {
-    setLoading(true);  
+    setLoading(true);
     const ops = {
       contractAddress: nft.token_address,
       functionName: "setApprovalForAll",
-      abi: [{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"}],
+      abi: [{ "inputs": [{ "internalType": "address", "name": "operator", "type": "address" }, { "internalType": "bool", "name": "approved", "type": "bool" }], "name": "setApprovalForAll", "outputs": [], "stateMutability": "nonpayable", "type": "function" }],
       params: {
         operator: marketAddress,
         approved: true
@@ -152,6 +152,15 @@ function NFTBalance() {
     itemImage.save();
   }
   console.log(NFTBalance)
+
+  // empty state
+  if (NFTBalance.length === 0) {
+    console.log("empty state")
+    return (
+      <Text> Nothing here yet, connect your wallet and mint to get started!</Text>
+    )
+  }
+
   return (
     <>
       <div style={styles.NFTs}>
@@ -172,9 +181,6 @@ function NFTBalance() {
             />
             <div style={{ marginBottom: "10px" }}></div>
           </>
-        )}
-        {NFTBalance && NFTBalance.isEmpty && (
-          <Text> Nothing here yet, connect your wallet and mint to get started!</Text>
         )}
         {NFTBalance &&
           NFTBalance.map((nft, index) => (
