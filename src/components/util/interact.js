@@ -89,7 +89,7 @@ async function loadContract() {
   return new web3.eth.Contract(contractABI, contractAddress);
 }
 
-export const mintNFT = async (url, name, description) => {
+export const mintNFT = async (url, name, description, originalCreator) => {
   if (url.trim() == "" || name.trim() == "" || description.trim() == "") {
     return {
       success: false,
@@ -102,6 +102,7 @@ export const mintNFT = async (url, name, description) => {
   metadata.name = name;
   metadata.image = url;
   metadata.description = description;
+  metadata.originalCreator = originalCreator;
 
   const pinataResponse = await pinJSONToIPFS(metadata);
   if (!pinataResponse.success) {
