@@ -4,6 +4,18 @@ import React, { useState, useEffect } from "react";
 const { initializeAlchemy, getNftsForCollection, Network } = require('@alch/alchemy-sdk');
 const { Meta } = Card;
 
+const styles = {
+  NFTs: {
+    display: "flex",
+    flexWrap: "wrap",
+    WebkitBoxPack: "start",
+    justifyContent: "flex-start",
+    margin: "0 auto",
+    maxWidth: "1000px",
+    gap: "10px",
+  },
+};
+
 require("dotenv").config();
 const alchemyKey = process.env.REACT_APP_ALCHEMY_KEY;
 const settings = {
@@ -33,7 +45,7 @@ const Feed = (props) => {
   };
 
   return (
-    <div className="Feed">
+    <div style={styles.NFTs}>
       {feedNFTs &&
         feedNFTs.nfts.map((nft, index) => (
           <Card
