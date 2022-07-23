@@ -9,11 +9,7 @@ import { useWeb3ExecuteFunction } from "react-moralis";
 import Text from "antd/lib/typography/Text";
 import { NavLink } from "react-router-dom";
 import gif from "../assets/mint-now.gif"
-import {
-  connectWallet,
-  getCurrentWalletConnected,
-  mintNFT,
-} from "./util/interact.js";
+
 const { Meta } = Card;
 
 const styles = {
@@ -40,17 +36,6 @@ function NFTBalance() {
   const contractABIJson = contractABI//JSON.parse(contractABI);
   const listItemFunction = "createMarketItem";
   const ItemImage = Moralis.Object.extend("ItemImages");
-
-  async function mintLicenseFrom(nft) {
-    const title = "License for " + nft.token_address
-    const description = "Original name: " + nft.name
-    // const { success, status } = await mintNFT(LICENSE_NFT, 
-    //   "https://gateway.pinata.cloud/ipfs/QmXXKNeJrigru7C41hBoobz8igsjmqUe6Ch2jMSUeigFoj", 
-    //   title,
-    //   description,
-    //   false);
-    // setStatus(status);
-  }
 
   const handleExpandInfo = (nft) => {
     setExpandInfo(nft);
@@ -179,17 +164,11 @@ function NFTBalance() {
         title={`${nftToExpand?.metadata?.name}`}
         visible={visible}
         onCancel={() => setVisibility(false)}
-        onOk={() => mintLicenseFrom(nftToExpand)}
-        okText="Use"
+        onOk={() => setVisibility(false)}
+        okText="Done"
         footer={[
           <Button onClick={() => setVisibility(false)}>
             Cancel
-          </Button>,
-          <Button onClick={() => mintLicenseFrom(nftToExpand)} type="primary">
-            Use
-          </Button>,
-          <Button onClick={() => mintLicenseFrom(nftToExpand)} type="primary">
-            Claim
           </Button>
         ]}
       >

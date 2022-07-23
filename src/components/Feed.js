@@ -1,6 +1,11 @@
 import { Card, Image, Tooltip, Modal, Input, Alert, Spin, Button } from "antd";
 import { FileSearchOutlined, FullscreenOutlined } from "@ant-design/icons";
 import React, { useState, useEffect } from "react";
+import {
+  connectWallet,
+  getCurrentWalletConnected,
+  mintNFT,
+} from "./util/interact.js";
 const { initializeAlchemy, getNftsForCollection, Network } = require('@alch/alchemy-sdk');
 const { Meta } = Card;
 
@@ -29,6 +34,7 @@ const Feed = (props) => {
   const [feedNFTs, setFeedNFTs] = useState(null);
   const [visible, setVisibility] = useState(false);
   const [nftToExpand, setExpandInfo] = useState(null);
+  const [status, setStatus] = useState("");
   const { initializeAlchemy, getNftsForCollection, Network } = require('@alch/alchemy-sdk');
 
   useEffect(() => {
@@ -46,6 +52,18 @@ const Feed = (props) => {
     setExpandInfo(nft);
     setVisibility(true);
   };
+
+  async function mintLicenseFrom(nft) {
+    console.log(nft)
+    const title = "License for Port item #" + nft.tokenId + " named " + nft.title
+    const description = "Original asset: " + nft.rawMetadata.image
+    const { success, status } = await mintNFT("LICENSE_NFT", 
+      "https://gateway.pinata.cloud/ipfs/QmXXKNeJrigru7C41hBoobz8igsjmqUe6Ch2jMSUeigFoj", 
+      title,
+      description,
+      false);
+    setStatus(status);
+  }
 
   return (
     <div style={styles.NFTs}>
@@ -86,6 +104,27 @@ const Feed = (props) => {
             <Meta title={nft.title} description={nft.rawMetadata.description} />
           </Card>
         ))}
+        <Modal
+        title={`${nftToExpand?.metadata?.name}`}
+        visible={visible}
+        onCancel={() => setVisibility(false)}
+        onOk={() => mintLicenseFrom(nftToExpand)}
+        okText="Use"
+        footer={[
+          <Button onClick={() => setVisibility(false)}>
+            Cancel
+          </Button>,
+          <Button onClick={() => mintLicenseFrom(nftToExpand)} type="primary">
+            Use
+          </Button>,
+          <Button onClick={() => mintLicenseFrom(nftToExpand)} type="primary">
+            Claim
+          </Button>,
+          <p id="status" style={{ color: "red" }}>
+          {status}
+        </p>
+        ]}
+      ></Modal>
     </div>
   );
 }
