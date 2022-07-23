@@ -4,6 +4,9 @@ import {
   getCurrentWalletConnected,
   mintNFT,
 } from "./util/interact.js";
+import { Image, Checkbox, Tooltip, Modal, Input, Alert, Spin, Button } from "antd";
+import Text from "antd/lib/typography/Text";
+const { TextArea } = Input;
 
 const Minter = (props) => {
   const [walletAddress, setWallet] = useState("");
@@ -12,6 +15,7 @@ const Minter = (props) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [url, setURL] = useState("");
+  const [originalCreator, setOriginalCreator] = useState(false);
 
   useEffect(async () => {
     const { address, status } = await getCurrentWalletConnected();
@@ -21,6 +25,43 @@ const Minter = (props) => {
 
     addWalletListener();
   }, []);
+
+  const styles = {
+    h2: {
+      display: "flex",
+      fontFamily: "Albert+Sans, sans-serif",
+      fontWeight: "400",
+      fontSize: "32px",
+      color: "#041836",
+      paddingTop: "10px",
+    },
+    label: {
+      display: "flex",
+      fontFamily: "Albert+Sans, sans-serif",
+      fontWeight: "normal",
+      fontSize: "16px",
+      fontWeight: "bold",
+      color: "#041836",
+      paddingTop: "10px",
+      paddingBottom: "10px",
+    },
+    subtitle: {
+      display: "flex",
+      fontFamily: "Albert+Sans, sans-serif",
+      fontWeight: "light",
+      fontSize: "16px",
+      color: "#041836",
+      paddingTop: "10px",
+      paddingBottom: "10px",
+    },
+    checkbox: {
+      paddingTop: "10px",
+      paddingBottom: "10px",
+      fontFamily: "Albert+Sans, sans-serif",
+      fontWeight: "normal",
+      fontSize: "16px",
+    }
+  };
 
   function addWalletListener() {
     if (window.ethereum) {
@@ -47,12 +88,6 @@ const Minter = (props) => {
     }
   }
 
-  const connectWalletPressed = async () => {
-    const walletResponse = await connectWallet();
-    setStatus(walletResponse.status);
-    setWallet(walletResponse.address);
-  };
-
   const onMintPressed = async () => {
     const { success, status } = await mintNFT(url, name, description);
     setStatus(status);
@@ -63,47 +98,55 @@ const Minter = (props) => {
     }
   };
 
+  const checkboxChecked = (e) => {
+    setOriginalCreator(e.target.checked)
+    console.log(`checked = ${e.target.checked}`);
+  };
+
   return (
     <div className="Minter">
-      <button id="walletButton" onClick={connectWalletPressed}>
-        {walletAddress.length > 0 ? (
-          "Connected: " +
-          String(walletAddress).substring(0, 6) +
-          "..." +
-          String(walletAddress).substring(38)
-        ) : (
-          <span>Connect Wallet</span>
-        )}
-      </button>
-
-      <br></br>
-      <h1 id="title">🧙‍♂️ Alchemy NFT Minter</h1>
-      <p>
-        Simply add your asset's link, name, and description, then press "Mint."
-      </p>
+      <Text style={styles.h2}>Mint an Item</Text>
+      <Text style={styles.subtitle}>Add any image, video, website, or link.</Text>
       <form>
-        <h2>🖼 Link to asset: </h2>
-        <input
+        <Text style={styles.label}>Link to asset</Text>
+        <Input
           type="text"
-          placeholder="e.g. https://gateway.pinata.cloud/ipfs/<hash>"
+          placeholder="https://gateway.pinata.cloud/ipfs/<hash>"
           onChange={(event) => setURL(event.target.value)}
         />
-        <h2>🤔 Name: </h2>
-        <input
+        <Text style={styles.label}>Item Name</Text>
+        <Input
           type="text"
-          placeholder="e.g. My first NFT!"
+          placeholder="My first croissant"
           onChange={(event) => setName(event.target.value)}
         />
-        <h2>✍️ Description: </h2>
-        <input
+        <Text style={styles.label}>Describe the item</Text>
+        <TextArea 
+        rows={4}
           type="text"
-          placeholder="e.g. Even cooler than cryptokitties ;)"
+          placeholder="I made this cool GIF"
           onChange={(event) => setDescription(event.target.value)}
         />
+        <Checkbox style={styles.checkbox} onChange={checkboxChecked}>I certify I am the original creator</Checkbox>
       </form>
-      <button id="mintButton" onClick={onMintPressed}>
+      <Button
+        outline
+        size="large"
+        type="primary"
+        onClick={onMintPressed}
+        style={{
+          width: "100%",
+          marginTop: "20px",
+          borderRadius: "0.5rem",
+          fontSize: "16px",
+          fontWeight: "500",
+          alignSelf: "center",
+          color: "#3A4662",
+          backgroundColor: "#FFCD26"
+        }}
+      >
         Mint NFT
-      </button>
+      </Button>
       <p id="status" style={{ color: "red" }}>
         {status}
       </p>
