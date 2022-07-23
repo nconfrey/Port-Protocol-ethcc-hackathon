@@ -67,31 +67,8 @@ function NFTBalance() {
   }
 
 
-  async function approveAll(nft) {
-    setLoading(true);
-    const ops = {
-      contractAddress: nft.token_address,
-      functionName: "setApprovalForAll",
-      abi: [{ "inputs": [{ "internalType": "address", "name": "operator", "type": "address" }, { "internalType": "bool", "name": "approved", "type": "bool" }], "name": "setApprovalForAll", "outputs": [], "stateMutability": "nonpayable", "type": "function" }],
-      params: {
-        operator: marketAddress,
-        approved: true
-      },
-    };
-
-    await contractProcessor.fetch({
-      params: ops,
-      onSuccess: () => {
-        console.log("Approval Received");
-        setLoading(false);
-        setVisibility(false);
-        succApprove();
-      },
-      onError: (error) => {
-        setLoading(false);
-        failApprove();
-      },
-    });
+  async function mintLicenseFrom(nft) {
+    
   }
 
   const handleExpandInfo = (nft) => {
@@ -271,7 +248,7 @@ function NFTBalance() {
           <Button onClick={() => setVisibility(false)}>
             Cancel
           </Button>,
-          <Button onClick={() => approveAll(nftToExpand)} type="primary">
+          <Button onClick={() => mintLicenseFrom(nftToExpand)} type="primary">
             Use
           </Button>,
           <Button onClick={() => list(nftToExpand, price)} type="primary">
