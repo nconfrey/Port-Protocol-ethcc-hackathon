@@ -20,13 +20,6 @@ contract Port is ReentrancyGuard {
     uint256 price;
     bool listed;
   }
-  event NFTListed(
-    address nftContract,
-    uint256 tokenId,
-    address creator,
-    address user,
-    uint256 price
-  );
   event LicenseCreated(
     address nftContract,
     uint256 tokenId,
@@ -68,45 +61,5 @@ contract Port is ReentrancyGuard {
 
   function getLicenseFee() public view returns (uint256) {
     return LISTING_FEE;
-  }
-
-  function getMyNfts() public view returns (NFT[] memory) {
-    uint nftCount = _nftCount.current();
-    uint myNftCount = 0;
-    for (uint i = 0; i < nftCount; i++) {
-      if (_idToNFT[i + 1].owner == msg.sender) {
-        myNftCount++;
-      }
-    }
-
-    NFT[] memory nfts = new NFT[](myNftCount);
-    uint nftsIndex = 0;
-    for (uint i = 0; i < nftCount; i++) {
-      if (_idToNFT[i + 1].owner == msg.sender) {
-        nfts[nftsIndex] = _idToNFT[i + 1];
-        nftsIndex++;
-      }
-    }
-    return nfts;
-  }
-
-  function getMyListedNfts() public view returns (NFT[] memory) {
-    uint nftCount = _nftCount.current();
-    uint myListedNftCount = 0;
-    for (uint i = 0; i < nftCount; i++) {
-      if (_idToNFT[i + 1].seller == msg.sender && _idToNFT[i + 1].listed) {
-        myListedNftCount++;
-      }
-    }
-
-    NFT[] memory nfts = new NFT[](myListedNftCount);
-    uint nftsIndex = 0;
-    for (uint i = 0; i < nftCount; i++) {
-      if (_idToNFT[i + 1].seller == msg.sender && _idToNFT[i + 1].listed) {
-        nfts[nftsIndex] = _idToNFT[i + 1];
-        nftsIndex++;
-      }
-    }
-    return nfts;
   }
 }
