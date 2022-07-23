@@ -3,11 +3,13 @@ import { useMoralis } from "react-moralis";
 import MoralisDappContext from "./context";
 
 function MoralisDappProvider({ children }) {
+  const contract = require("hardhat/artifacts/contracts/PortContent.sol/PortContent.json");
+  const contractAddress = "0x583fec0F4edF37950A3545A0D40b0A1D654A8742";
   const { web3, Moralis, user } = useMoralis();
   const [walletAddress, setWalletAddress] = useState();
   const [chainId, setChainId] = useState();       
-  const [contractABI, setContractABI] = useState('{"noContractDeployed": true}'); //Smart Contract ABI here
-  const [marketAddress, setMarketAddress] = useState("0x583fec0f4edf37950a3545a0d40b0a1d654a8742"); //Smart Contract Address Here
+  const [contractABI, setContractABI] = useState(contract.abi); //Smart Contract ABI here
+  const [marketAddress, setMarketAddress] = useState(contractAddress); //Smart Contract Address Here
 
 
   useEffect(() => {
@@ -27,6 +29,8 @@ function MoralisDappProvider({ children }) {
     () => setWalletAddress(web3.givenProvider?.selectedAddress || user?.get("ethAddress")),
     [web3, user]
   );
+
+  console.log(contractABI)
 
   return (
     <MoralisDappContext.Provider value={{ walletAddress, chainId, marketAddress, setMarketAddress, contractABI, setContractABI }}>

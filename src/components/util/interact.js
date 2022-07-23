@@ -131,7 +131,7 @@ export const mintNFT = async (url, name, description) => {
     return {
       success: true,
       status:
-        "✅ Check out your transaction on Polyscan: https://mumbai.polygonscan.com/" +
+        "✅ Check out your transaction on Polyscan: https://mumbai.polygonscan.com/tx/" +
         txHash,
     };
   } catch (error) {
