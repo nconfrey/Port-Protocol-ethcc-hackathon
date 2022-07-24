@@ -1,5 +1,7 @@
 # Port Protocol: EthCC 2022 Hackathon
 
+![port-9mb-gif](https://user-images.githubusercontent.com/15101296/180642613-eb1ea839-a6e7-477e-b799-6e82ee95a419.gif)
+
 Try out the demo, which [is hosted live here!](https://port-protocol-ethcc-hackathon.vercel.app/feed)
 
 ### Problem
