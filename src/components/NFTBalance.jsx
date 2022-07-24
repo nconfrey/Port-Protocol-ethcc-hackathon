@@ -126,7 +126,8 @@ function NFTBalance() {
                 bordered={false}
                 style={{
                   width: 300,
-                  height: 450
+                  height: 450,
+                  backgroundColor: "transparent" 
                 }}
                 cover={
                   nft.image.indexOf(".jpg") != -1 ||
