@@ -142,7 +142,7 @@ function NFTBalance() {
                 nft.image.indexOf(".jpg") != -1 ||
                   nft.image.indexOf(".png") != -1 ||
                   nft.image.indexOf(".jpeg") != -1 ||
-                  nft.image.image?.indexOf(".gif") != -1 ||
+                  nft.image.indexOf(".gif") != -1 ||
                   nft.image.indexOf("ipfs") != -1
                   ?
                   <Image
