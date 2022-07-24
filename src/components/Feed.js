@@ -115,7 +115,7 @@ const Feed = (props) => {
           </Card>
         ))}
       <Modal
-        title={`${nftToExpand?.metadata?.name}`}
+        title={`${nftToExpand?.rawMetadata.name}`}
         visible={visible}
         onCancel={() => setVisibility(false)}
         onOk={() => mintLicenseFrom(nftToExpand)}
@@ -134,7 +134,17 @@ const Feed = (props) => {
             {status}
           </p>
         ]}
-      ></Modal>
+      >
+        <img
+          src={`${nftToExpand?.rawMetadata.image}`}
+          style={{
+            width: "250px",
+            margin: "auto",
+            borderRadius: "10px",
+            marginBottom: "15px",
+          }}
+        />
+      </Modal>
     </div>
   );
 }
