@@ -3,25 +3,36 @@
 Try out the demo, which [is hosted live here!](https://port-protocol-ethcc-hackathon.vercel.app/feed)
 
 **Smart Contract Architecture**
+
 Contracts were written with [`OpenZepplin`](https://docs.openzeppelin.com/learn/developing-smart-contracts?pref=hardhat) and deployed with `Hardhat`. 
 
 `src/hardhat/PortContent.sol`
 **Installation**
+
 1. `yarn install`
 2. `yarn start`
 
 ### Use of Polygon
 
-We deployed the `PortContent (PORT)` token onto Polygon Mumbai testnet. Find our contract [here](https://mumbai.polygonscan.com/token/0x583fec0f4edf37950a3545a0d40b0a1d654a8742)
+We wrote 3 Solidity smart contracts for this hackathon and deployed 2 onto Polygon Mumbai testnet.
 
+- The `PortContent (PORT)` token represents a piece of content (image, video, link). Find our contract [here](https://mumbai.polygonscan.com/token/0x583fec0f4edf37950a3545a0d40b0a1d654a8742). It is `PortContent.sol`.
+- The `PortLicense (THX)` token represents a license to fairly use a piece of content. Find our contract [here](https://mumbai.polygonscan.com/address/0x509ad24fe1ea7d8e261b6c01156a3115be3d061c). It is `PortLicense.sol`.
+- The `Port.sol` contract was written as a possible future extension to manage the payment of royalties when minting licenses, and saving a percentage to the development wallet. 
+
+Resources used while developing:
 - [Deploy on polygon tutorial](https://docs.alchemy.com/alchemy/tutorials/how-to-code-and-deploy-a-polygon-smart-contract)
-
-Resources:
 - `npx hardhat run scripts/deploy.js --network polygon_mumbai`
 
 ### Use of IPFS
 
-The metadata is pinned to `IPFS` using `Pinata`.
+We used `Pinata` and `IPFS` to host our lovely NFT designs.
+
+| Creator  | Curator  | License   |
+|---|---|---|
+|https://gateway.pinata.cloud/ipfs/QmW2Y9Vht1WPUz1HtB6aqgqVC24nMGXHJk23qhhN2FrTQ1  |https://gateway.pinata.cloud/ipfs/QmW2Y9Vht1WPUz1HtB6aqgqVC24nMGXHJk23qhhN2FrTQ1   |https://gateway.pinata.cloud/ipfs/QmXXKNeJrigru7C41hBoobz8igsjmqUe6Ch2jMSUeigFoj   |
+
+Additionally, the metadata JSON is pinned to `IPFS` using `Pinata`. See the helper function `pinJSONToIPFS` which uses `axios` to accomplish the network fetch as well as bundling our Pinata api keys.
 
 ### Use of Alchemy
 
