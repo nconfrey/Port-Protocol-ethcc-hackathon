@@ -141,6 +141,7 @@ function NFTBalance() {
               cover={
                 nft.image.indexOf(".jpg") != -1 ||
                   nft.image.indexOf(".png") != -1 ||
+                  nft.image.indexOf(".jpeg") != -1 ||
                   nft.image.indexOf("ipfs") != -1
                   ?
                   <Image
@@ -150,8 +151,10 @@ function NFTBalance() {
                     alt=""
                     style={{ height: "240px", width: "240px" }}
                   />
-                  :
-                  <iframe src={nft?.image}></iframe>
+                  : <Image
+                    src={"https://gateway.pinata.cloud/ipfs/QmW2Y9Vht1WPUz1HtB6aqgqVC24nMGXHJk23qhhN2FrTQ1"}
+                    style={{ height: "240px", width: "240px" }}
+                  />
               }
               key={index}
             >
