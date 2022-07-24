@@ -83,7 +83,7 @@ const App = ({ isServerInfo }) => {
                 <img src={logo} style={{
                   width: "100px",
                   height: "50px",
-                  paddingTop: "5px"
+                  paddingTop: "10px"
                 }} />
               </NavLink>
             </Menu.Item>
