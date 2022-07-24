@@ -155,7 +155,7 @@ function NFTBalance() {
               >
                 <Meta
                   title={nft.metadata.name}
-                  description={"Minted on: " + nft.last_metadata_sync}
+                  description={"Minted on: " + nft.last_metadata_sync.substring(0, 10)}
                   style={{
                     textAlign: "center",
                     justifyContent: "center"

@@ -104,7 +104,7 @@ const Feed = (props) => {
           >
             <Meta 
             title={nft.title} 
-            description={"Minted on: " + nft.timeLastUpdated}
+            description={"Minted on: " + nft.timeLastUpdated.substring(0, 10)}
             style={{
               textAlign: "center",
               justifyContent: "center"
