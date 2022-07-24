@@ -94,6 +94,7 @@ const Feed = (props) => {
               nft.rawMetadata.image?.indexOf(".jpg") != -1 ||
                 nft.rawMetadata.image?.indexOf(".png") != -1 ||
                 nft.rawMetadata.image?.indexOf(".jpeg") != -1 ||
+                nft.rawMetadata.image?.indexOf(".gif") != -1 ||
                 nft.rawMetadata.image?.indexOf("ipfs") != -1
                 ?
                 <Image
