@@ -14,7 +14,7 @@ Read more about the problem and story in our devpost submission.
 
 ### Solution
 
-image
+<img width="408" alt="Screen Shot 2022-07-24 at 12 10 30 PM" src="https://user-images.githubusercontent.com/7350670/180642953-7cd0df60-d4b8-4765-9551-8723a52a296f.png">
 
 Port Protocol assembles content datasets on-chain so that they can be used with fair creative attribution and compensation. 
 
