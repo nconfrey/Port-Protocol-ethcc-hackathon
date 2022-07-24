@@ -57,7 +57,7 @@ const Feed = (props) => {
     console.log(nft)
     const title = "License for Port item #" + nft.tokenId + " named " + nft.title
     const description = "Original asset: " + nft.rawMetadata.image
-    const { success, status } = await mintNFT("LICENSE_NFT",
+    const { success, status } = await mintNFT("LICENSE",
       "https://gateway.pinata.cloud/ipfs/QmXXKNeJrigru7C41hBoobz8igsjmqUe6Ch2jMSUeigFoj",
       title,
       description,
@@ -105,7 +105,9 @@ const Feed = (props) => {
                 />
                 : <Image
                   preview={false}
-                  src={"https://gateway.pinata.cloud/ipfs/QmW2Y9Vht1WPUz1HtB6aqgqVC24nMGXHJk23qhhN2FrTQ1"}
+                  src={nft.rawMetadata.originalCreator === true ? "https://gateway.pinata.cloud/ipfs/QmbiTRRffjBTdYVQt3XCqXrBen48fwQm72FCcZuNR4yZWF"
+                    : "https://gateway.pinata.cloud/ipfs/QmW2Y9Vht1WPUz1HtB6aqgqVC24nMGXHJk23qhhN2FrTQ1"
+                  }
                   style={{ height: "240px", width: "240px" }}
                 />
             }

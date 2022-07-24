@@ -115,6 +115,7 @@ export const mintNFT = async (nftType, url, name, description, originalCreator) 
   metadata.name = name;
   metadata.image = url;
   metadata.description = description;
+  console.log(nftType)
   if (nftType == CONTENT_NFT) {
     metadata.originalCreator = originalCreator;
   }

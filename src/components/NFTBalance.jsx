@@ -152,8 +152,10 @@ function NFTBalance() {
                     style={{ height: "240px", width: "240px" }}
                   />
                   : <Image
-                    src={"https://gateway.pinata.cloud/ipfs/QmW2Y9Vht1WPUz1HtB6aqgqVC24nMGXHJk23qhhN2FrTQ1"}
-                    style={{ height: "240px", width: "240px" }}
+                  preview={false}
+                  src={nft.metadata?.originalCreator === true ? "https://gateway.pinata.cloud/ipfs/QmbiTRRffjBTdYVQt3XCqXrBen48fwQm72FCcZuNR4yZWF"
+                    : "https://gateway.pinata.cloud/ipfs/QmW2Y9Vht1WPUz1HtB6aqgqVC24nMGXHJk23qhhN2FrTQ1"
+                  }
                   />
               }
               key={index}

@@ -30,7 +30,7 @@ We used `Pinata` and `IPFS` to host our lovely NFT designs.
 
 | Creator  | Curator  | License   |
 |---|---|---|
-|https://gateway.pinata.cloud/ipfs/QmW2Y9Vht1WPUz1HtB6aqgqVC24nMGXHJk23qhhN2FrTQ1  |https://gateway.pinata.cloud/ipfs/QmW2Y9Vht1WPUz1HtB6aqgqVC24nMGXHJk23qhhN2FrTQ1   |https://gateway.pinata.cloud/ipfs/QmXXKNeJrigru7C41hBoobz8igsjmqUe6Ch2jMSUeigFoj   |
+|https://gateway.pinata.cloud/ipfs/QmbiTRRffjBTdYVQt3XCqXrBen48fwQm72FCcZuNR4yZWF  |https://gateway.pinata.cloud/ipfs/QmW2Y9Vht1WPUz1HtB6aqgqVC24nMGXHJk23qhhN2FrTQ1   |https://gateway.pinata.cloud/ipfs/QmXXKNeJrigru7C41hBoobz8igsjmqUe6Ch2jMSUeigFoj   |
 
 Additionally, the metadata JSON is pinned to `IPFS` using `Pinata`. See the helper function `pinJSONToIPFS` which uses `axios` to accomplish the network fetch as well as bundling our Pinata api keys.
 

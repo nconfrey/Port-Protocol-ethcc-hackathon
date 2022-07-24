@@ -89,7 +89,7 @@ const Minter = (props) => {
   }
 
   const onMintPressed = async () => {
-    const { success, status } = await mintNFT("CREATOR_NFT",
+    const { success, status } = await mintNFT("CONTENT",
       url,
       name,
       description,
@@ -104,7 +104,6 @@ const Minter = (props) => {
 
   const checkboxChecked = (e) => {
     setOriginalCreator(e.target.checked)
-    console.log(`checked = ${e.target.checked}`);
   };
 
   return (
